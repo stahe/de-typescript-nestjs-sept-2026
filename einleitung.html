@@ -1,0 +1,789 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Datenbankzugriff mit TypeScript und NestJS">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/de-typescript-nestjs-sept-2026/einleitung.html">
+      
+      
+        <link rel="prev" href="index.html">
+      
+      
+        <link rel="next" href="einrichtung-einer-arbeitsumgebung.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>1. Einleitung - Datenbankzugriff mit TypeScript und NestJS</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Datenbankzugriff mit TypeScript und NestJS";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-einleitung" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Datenbankzugriff mit TypeScript und NestJS" class="md-header__button md-logo" aria-label="Datenbankzugriff mit TypeScript und NestJS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Datenbankzugriff mit TypeScript und NestJS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1. Einleitung
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Zum dunklen Modus wechseln"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Zum dunklen Modus wechseln" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Zum hellen Modus wechseln"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Zum hellen Modus wechseln" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/de-typescript-nestjs-sept-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Datenbankzugriff mit TypeScript und NestJS" class="md-nav__button md-logo" aria-label="Datenbankzugriff mit TypeScript und NestJS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Datenbankzugriff mit TypeScript und NestJS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/de-typescript-nestjs-sept-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Willkommen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Einleitung
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="einleitung.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Einleitung
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-zielgruppe-und-voraussetzungen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1. Zielgruppe und Voraussetzungen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-aufbau-des-beispielprojekts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2. Aufbau des Beispielprojekts
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="einrichtung-einer-arbeitsumgebung.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Einrichtung einer Arbeitsumgebung
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="die-grundlagen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Die Grundlagen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation-eines-nestjs-servers.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Installation eines NestJS-Servers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="die-http-funktionen-von-typescript.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Die HTTP-Funktionen von TypeScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-clients-des-steuerberechnungs-service.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. HTTP-Clients des Steuerberechnungs-Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="datenbankzugriff.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Datenbankzugriff
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="einfuhrung-in-das-web-framework-nestjs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Einführung in das Web-Framework NestJS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fallstudie-der-steuerberechnungsserver-in-nestjs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Fallstudie: Der Steuerberechnungsserver in NestJS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fazit.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Fazit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="1-einleitung">1. <span style="color: #2e74b5">Einleitung</span></h1>
+<p>Das PDF des Dokuments befindet sich |<a href="https://1drv.ms/b/c/f53a919f43d27eb5/IQBijhqvZF8PRL3R8ED85BPxAT2QWsQ7sPsTHL9hHoGgadA?e=QJteK4">HIER</a>|.</p>
+<p>Der Code des Dokuments befindet sich |<a href="https://1drv.ms/u/c/f53a919f43d27eb5/IQB-zWEpRXiCQ7SxozLNxJ-8AdEV_fPE80_VZASujYnq6qw?e=Ur7Feb">HIER</a>|.</p>
+<p>Dieses Dokument ist ein Produkt von <strong>Claude, der KI von Anthropic</strong>. Sein Ziel ist es, das Dokument [Introduction to the Python 3 Language and the Flask Web Framework Through Examples] in zweierlei Hinsicht zu übertragen:</p>
+<ul>
+<li>die Sprache Python 3 wird durch die Sprache TypeScript 6 ersetzt;</li>
+<li>das Web-Framework Flask in Python wird durch das Web-Framework NestJS ersetzt;</li>
+</ul>
+<p><strong>Claude von Anthropic</strong> hat den größten Teil der Arbeit übernommen (90%):</p>
+<ul>
+<li><strong>Codegenerierung</strong>. Wir sind vom bereits geschriebenen Code des Kurses <a href="https://stahe.github.io/de-ecmascript6-oct-2019/"><u><span style="color: #0563c1">„Einführung in die Sprache ECMASCRIPT 6 anhand von Beispielen</span></u></a>“ ausgegangen. Anschließend habe ich Claude gebeten, die Skripte des Kurses um die Datenbankverwaltung zu erweitern und dann einen Webservice mit dem Framework NestJS zu erstellen;</li>
+<li><strong>Erzeugung des Kurses im ODT-Format</strong>. Auch hier sind wir von der ODT-Datei des Kurses <a href="https://stahe.github.io/de-ecmascript6-oct-2019/"><u><span style="color: #0563c1">„Einführung in die Sprache ECMASCRIPT 6 anhand von Beispielen</span></u></a>“ ausgegangen. Anschließend habe ich Claude gebeten, alle neuen Skripte, die er erstellt hatte, aufzunehmen und mit Kommentaren zu versehen.</li>
+</ul>
+<p>Meine Arbeit bestand aus zwei Dingen:</p>
+<ul>
+<li><strong>Testen</strong> des Codes;</li>
+<li><strong>Überarbeiten</strong> des ODT-Dokuments. Insbesondere habe ich Screenshots hinzugefügt, um den Lesern zu helfen;</li>
+</ul>
+<p><strong>Serge Tahé</strong>, September 2026</p>
+<p>==</p>
+<p>Die Sprache ECMAScript hat sich seit 2019 erheblich weiterentwickelt: ECMAScript hat die Ausgaben von 2020 bis 2026 durchlaufen, und eine begleitende Sprache, <strong><span style="color: #9a3412">[TypeScript]</span></strong>, hat sich als sicherster Weg etabliert, JavaScript in großem Maßstab zu schreiben. Diese Neufassung folgt eng der Struktur und dem didaktischen Ansatz des Originaldokuments <a href="https://stahe.github.io/de-ecmascript6-oct-2019/"><u><span style="color: #0563c1">„Einführung in die Sprache ECMASCRIPT 6 anhand von</span></u></a> Beispielen“ – ein Skript, sein Code, seine zeilenweise Erklärung und seine Ausführung –, jedoch:</p>
+<ul>
+<li>alle Skripte werden jetzt in <strong><span style="color: #9a3412">[TypeScript] </span></strong>statt in reinem JavaScript geschrieben;</li>
+<li>die Erklärungen behandeln nicht nur die Syntax der Sprache, sondern auch ihre <strong>Datentypen</strong> und die Unterschiede zu JavaScript;</li>
+<li>Es wurden neue Kapitel hinzugefügt, die die zwischen 2020 und 2026 eingeführten Neuerungen behandeln: Optional Chaining, Klassen mit privaten Feldern, Top-Level-<code>await</code>, <span style="color: #9a3412">Object.groupBy</span>, <span style="color: #9a3412">Array.fromAsync</span> und die jüngsten Ergänzungen aus ECMAScript 2026 (<span style="color: #9a3412">Math.sumPrecise</span>, <span style="color: #9a3412">Iterator.concat</span>, <span style="color: #9a3412">Error.isError</span> ...);</li>
+<li>ein Kapitel ist <strong><span style="color: #9a3412">[Temporal]</span></strong> gewidmet, dem modernen Nachfolger des Objekts <span style="color: #9a3412">Date</span>;</li>
+<li>die VSCode-Laufzeit-Screenshots des Originaldokuments wurden durch die <strong>tatsächliche, überprüfte</strong> Ausgabe jedes Skripts ersetzt, erzeugt mit <span style="color: #9a3412">tsx </span>unter Node.js 26.</li>
+</ul>
+<p>Wie das Originaldokument bezieht sich auch dieses auf einen in PHP 7 geschriebenen Server zur Steuerberechnung (siehe den Kurs „Einführung in die Sprache PHP7 anhand von Beispielen“). In den letzten Kapiteln wird in TypeScript ein Client für diesen Server erstellt – zunächst eine Konsolenanwendung, die mithilfe von <strong><span style="color: #9a3412">[UI, business, dao]</span></strong> in Schichten strukturiert ist, und anschließend ein im Browser laufender Client mit <strong><span style="color: #9a3412">[webpack]</span></strong>.</p>
+<p>Dieses Dokument erfordert <strong>aktives Lesen</strong>: Um ein Skript zu verstehen, müssen Sie seinen Code, seine Kommentare und das tatsächliche Ergebnis seiner Ausführung lesen.</p>
+<h2 id="11-zielgruppe-und-voraussetzungen">1.1. <span style="color: #2e74b5">Zielgruppe und Voraussetzungen</span></h2>
+<p>Dieses Dokument richtet sich an Einsteiger in TypeScript, die bereits mit den Grundlagen der Programmierung (Variablen, Schleifen, Funktionen, bedingte Anweisungen) in einer anderen Sprache vertraut sind. Vorkenntnisse in JavaScript oder TypeScript sind nicht erforderlich.</p>
+<h2 id="12-aufbau-des-beispielprojekts">1.2. <span style="color: #2e74b5">Aufbau des Beispielprojekts</span></h2>
+<p>Alle in diesem Dokument vorgestellten Skripte gehören zu einem einzigen VSCode-Projekt, nämlich zum Ordner <span style="color: #9a3412"><code>typescript-fundamentals/</code></span> in der unten beschriebenen vollständigen Verzeichnisstruktur, und sind in je einem Ordner pro Kapitel organisiert (<span style="color: #9a3412">basics</span>, <span style="color: #9a3412">arrays</span>, <span style="color: #9a3412">objects</span>, <span style="color: #9a3412">strings</span>, <span style="color: #9a3412">regexp</span>, <span style="color: #9a3412">functions</span>, <span style="color: #9a3412">exceptions</span>, <span style="color: #9a3412">modules</span>, <span style="color: #9a3412">async</span>, <span style="color: #9a3412">http</span>, <span style="color: #9a3412">classes</span>, <span style="color: #9a3412">whats-new, ecmascript-2026, temporal, tax client</span>). Jedes Skript ist eine <span style="color: #9a3412">.ts</span>-Datei, die sich direkt mit dem folgenden Befehl aus dem Projektstamm ausführen lässt:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>npx tsx path/to/the/script.ts
+</code></pre></div>
+<p><strong>Tipp:</strong> Die <span style="color: #9a3412">README.md</span>-Dateien in jedem Projektordner enthalten eine kompakte Zusammenfassung des Lehrinhalts dieses Dokuments – sie können als Kurzreferenz dienen, sobald Sie das Dokument gelesen haben.</p>
+<p>Ab den Kapiteln über Datenbanken und NestJS beschränkt sich dieses Projekt nicht mehr auf den oben genannten Ordner: Es ist nun Teil einer einzigen, umfassenderen Verzeichnisstruktur, die alle in diesem Dokument vorgestellten Skripte enthält – TypeScript-Grundlagen, Datenbankzugriff, NestJS-Miniprojekte und Fallstudien. Diese vollständige Verzeichnisstruktur laden die Leser herunter, und ein einziger Befehl <code>**npm install</code><strong>, im Stammverzeichnis ausgeführt, installiert dank </strong><span style="color: #9a3412">[npm workspaces]</span>** alles auf einmal:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>typescript-nestjs-course-scripts/
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── package.json
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── README.md
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├── typescript-fundamentals/
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   ├── basics/  arrays/  objects/  strings/  regexp/  functions/
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ├── exceptions/  modules/  async/  http/  classes/
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   └── whats-new/  ecmascript-2026/  temporal/  tax client/
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>├── typescript-databases/
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   ├── sql/
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   └── databases/  (mysql/  typeorm/  prisma/)
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>├── nestjs-course/
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   ├── hello-nest/
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   ├── actions-response/
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│   ├── actions-model/
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│   └── data-access/  (native-driver/  typeorm/  prisma/)
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>└── nestjs-case-study/
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    ├── src/  (actions/  config/  entities/  filters/  model/  responses/  session/  utilities/)
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    └── views/
+</code></pre></div>
+<p>Der Zweck dieser Ordner:</p>
+<ul>
+<li><span style="color: #9a3412">typescript-fundamentals/ </span>– die Skripte für die Sprachkapitel (der oben beschriebene Ordner: basics, arrays, objects, functions, classes, async, exceptions, modules, Neuerungen von ECMAScript, <strong><span style="color: #9a3412">[Temporal]</span></strong>, gefolgt vom Client des Servers zur Steuerberechnung);</li>
+<li><span style="color: #9a3412">typescript-databases/ </span>– die drei Kapitel zum Datenbankzugriff: der native Treiber mysql2, das ORM TypeORM und das ORM Prisma;</li>
+<li><span style="color: #9a3412">nestjs-course/ </span>– die NestJS-Miniprojekte aus den Kapiteln zum Framework: <span style="color: #9a3412">hello-nest </span>(erstes Projekt), <span style="color: #9a3412">actions-response</span>, <span style="color: #9a3412">actions-model</span> und die <span style="color: #9a3412">data-access</span>-Snippets, die NestJS in Kombination mit dem nativen Treiber, TypeORM und Prisma veranschaulichen;</li>
+<li><span style="color: #9a3412">nestjs-case-study/ </span>– das vollständige Projekt aus dem Kapitel „Fallstudie“: die Portierung des PHP-Servers zur Steuerberechnung nach NestJS.</li>
+</ul>
+<p>Die Datei <span style="color: #9a3412">README.md</span> im Stammverzeichnis folgt dieser Struktur; wie oben erwähnt, enthält außerdem jeder Unterordner seine eigene <span style="color: #9a3412">README.md-Datei</span> mit den jeweiligen Ausführungshinweisen.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        Dieses Tutorial, geschrieben von der KI <strong>Claude</strong> von Anthropic im Auftrag von <strong>Serge Tahé</strong>, wird der Öffentlichkeit unter den Bedingungen der Lizenz
+        <em>Creative Commons Namensnennung – Nicht kommerziell –
+        Weitergabe unter gleichen Bedingungen 3.0 Unported</em> zur Verfügung gestellt.
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>
